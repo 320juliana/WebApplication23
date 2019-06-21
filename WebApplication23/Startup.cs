@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication23
 {
@@ -33,6 +34,9 @@ namespace WebApplication23
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddDbContext<WebApplication23Context>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("WebApplication23Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
